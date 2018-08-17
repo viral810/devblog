@@ -40,7 +40,7 @@ jobs:
           at: ~/project
       - run:
           name: Lint and Security
-          command: yarn test:lint
+          command: yarn lint
 
   build:
     <<: *defaults
@@ -49,48 +49,13 @@ jobs:
           at: ~/project
       - run:
           name: Build Fixtures
-          command: yarn build && yarn test:fixtures -w=4 --coverage && yarn coverage
+          command: yarn build
       - persist_to_workspace:
           root: ~/project
           paths:
-            - nuxt/test/fixtures
             - nuxt/dist
     environment:
-      - NODE_ENV: "test"
-
-  test-unit:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/project
-      - run:
-          name: Unit Test
-          command: yarn test:unit -w=4 --coverage && yarn coverage
-    environment:
-      - NODE_ENV: "test"
-
-  test-e2e:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/project
-      - run:
-          name: E2E Test
-          command: yarn test:e2e && yarn coverage
-    environment:
-      - NODE_ENV: "test"
-
-  release:
-    <<: *defaults
-    steps:
-      - attach_workspace:
-          at: ~/project
-      - run:
-          name: release
-          command: |
-            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-            echo "//registry.yarnpkg.com/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-            ./scripts/release-edge
+      - NODE_ENV: "dev"
 
 workflows:
   version: 2
@@ -106,20 +71,10 @@ workflows:
           requires:
             - setup
 
-      - test-unit:
-          requires:
-            - build
-
-      - test-e2e:
-          requires:
-            - build
-
       - release:
           requires:
             - build
             - lint
-            - test-unit
-            - test-e2e
           filters:
             branches:
               only:
