@@ -1,6 +1,9 @@
 <template>
   <section class="container">
     <Header />
+    <div>
+      <p>This is contact page</p>
+    </div>
   </section>
 </template>
 
@@ -18,6 +21,7 @@ export default {
 .container {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
 }
 </style>
 
