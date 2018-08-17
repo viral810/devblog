@@ -18,6 +18,7 @@ export default {
 .container {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
 }
 </style>
 

@@ -2,7 +2,7 @@
   <nuxt-link v-bind:to="link" class="cta" v-bind:class="color" v-html="text" v-bind:title="text"></nuxt-link>
 </template>
 
-<style>
+<style lang="scss">
 .cta{
   color: #0a0a0a;
   -webkit-appearance: none;

@@ -1,9 +1,9 @@
 <template>
-  <h1 class="mono_fonts">Viral</h1>
+  <h1 class="mono_fonts" id="logo">Viral</h1>
 </template>
 
 <style>
-  h1{
+  #logo{
     font-size: 22px;
     font-weight: 700;
     text-transform: uppercase;
