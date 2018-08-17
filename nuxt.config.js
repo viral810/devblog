@@ -10,7 +10,9 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Personal dev blog' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,700' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Inconsolata:400,700' }
     ]
   },
   /*
