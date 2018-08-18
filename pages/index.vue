@@ -1,24 +1,85 @@
 <template>
   <section class="container">
     <Header />
+    <div class="wrap">
+      <div class="article__list">
+          <nuxt-link :to="'/blog/'+post.id" v-for="post in posts" :key="post.id" class="single__article">
+            <h3 class="mono_fonts">{{post.title.rendered}}</h3>
+            <div class="excerpt" v-html="post.excerpt.rendered"></div>
+          </nuxt-link>
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
 import Header from '~/components/Header.vue'
+import axios from 'axios'
 
 export default {
   components: {
     Header
+  },
+  async asyncData({error}) {
+    try {
+      const { data } = await axios.get('https://api.viralpatel.blog/wp-json/wp/v2/posts')
+      return { posts: data }
+    } catch (e) {
+      error({ statusCode: 400, message: 'Something went wrong' })
+    }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 .container {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  text-align: center;
+}
+
+.article__list{
+  width: 100%;
+  list-style-type: none;
+  padding: 50px;
+}
+
+.single__article{
+  text-align: left;
+  background: #ffffff;
+  -webkit-transition: opacity .35s ease-in;
+  transition: opacity .35s ease-in;
+  border: 1px solid #d6d6d6;
+  box-shadow: 3px 3px 0px #bababa;
+  border-radius: 3px;
+  width: 100%;
+  margin: auto;
+  position: relative;
+  margin-bottom: 20px;
+  padding: 20px;
+  text-decoration: none;
+  color: #222;
+  display: inline-block;
+  transition: all .3s ease-in;
+
+  &:hover{
+    background: #efe;
+    box-shadow: 3px 3px 0px #a3e2a3;
+  }
+
+  h3{
+    margin: 0px;
+    font-size: 27px;
+    line-height: 32px;
+    color: #4a69ff;
+  }
+
+  .excerpt{
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 400;
+  }
 }
 </style>
 
