@@ -2,8 +2,8 @@
   <section class="container">
     <Header />
     <article>
-      <h1>{{title}}</h1>
-      <p>{{body}}</p>
+      <h1>{{title.rendered}}</h1>
+      <div v-html="content.rendered"></div>
       <nuxt-link :to="'/'">Back</nuxt-link>
     </article>
   </section>
@@ -21,8 +21,12 @@ export default {
     return !isNaN(+params.id)
   },
   async asyncData({params, error}){
-    const {data} = await axios.get(`https://jsonplaceholder.typicode.com/posts/${+params.id}`)
-    return data
+    try {
+      const {data} = await axios.get(`https://api.viralpatel.blog/wp-json/wp/v2/posts/${+params.id}`)
+      return data
+    } catch (e) {
+      error({ statusCode: 404, message: 'Post not found' })
+    }
   }
 }
 </script>

@@ -26,7 +26,7 @@ module.exports = {
   */
   generate: {
     routes () {
-      return axios.get('https://jsonplaceholder.typicode.com/posts')
+      return axios.get('https://api.viralpatel.blog/wp-json/wp/v2/posts')
         .then((res) => {
           var rts = []
           res.data.forEach((d) => {
