@@ -59,7 +59,7 @@ export default {
   margin-bottom: 20px;
   padding: 20px;
   text-decoration: none;
-  color: #222;
+  color: #000;
   display: inline-block;
   transition: all .3s ease-in;
 
@@ -78,6 +78,8 @@ export default {
   .excerpt{
     margin-top: 20px;
     font-size: 16px;
+    line-height: 1.4;
+    letter-spacing: .6px;
     font-weight: 400;
   }
 }
