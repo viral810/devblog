@@ -2,6 +2,9 @@
   <section class="container">
     <Header />
     <div class="wrap">
+      <div class="cat__list_bar">
+        <nuxt-link to='/'>Latest</nuxt-link>
+      </div>
       <div class="article__list">
           <nuxt-link :to="'/blog/'+post.id" v-for="post in posts" :key="post.id" class="single__article">
             <h3 class="mono_fonts">{{post.title.rendered}}</h3>
@@ -42,7 +45,28 @@ export default {
 .article__list{
   width: 100%;
   list-style-type: none;
-  padding: 50px;
+  padding: 50px 20px;
+}
+
+.cat__list_bar{
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  margin-top: 35px;
+
+  a{
+    background: #cfd7ff;
+    border: 1px solid #4e57ef;
+    box-shadow: 3px 4px 0px #4e57ef;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 1.25em;
+    border-radius: 2px;
+    text-decoration: none;
+  }
 }
 
 .single__article{
