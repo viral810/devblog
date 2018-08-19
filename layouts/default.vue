@@ -29,6 +29,7 @@ html, body {
 .wrap{
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   width: 100%;
   max-width: 1250px;
   margin: 0 auto;
